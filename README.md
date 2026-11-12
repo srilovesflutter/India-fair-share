@@ -52,21 +52,31 @@ The longer explanation is the Methodology page in the app, and the field-by-fiel
 
 `scripts/assemble.mjs` and `scripts/manual.mjs` are the notes from the original build. The site does not read them. After you edit the JSON, you do not need to run the assembler. Running it again overwrites `data/companies.json`.
 
+## Live site
+
+Live site: [https://srilovesflutter.github.io/India-fair-share/](https://srilovesflutter.github.io/India-fair-share/). Repository: [https://github.com/srilovesflutter/India-fair-share](https://github.com/srilovesflutter/India-fair-share).
+
+Production builds set Vite `base` to `/India-fair-share/` (the path is case-sensitive). `npm run dev` still serves the app at `/` on port 4179.
+
 ## Deploy to GitHub Pages
 
-The Vite `base` is `./`, so the built files work at a project-site URL or a user-site URL.
+`.github/workflows/pages.yml` builds the site and deploys it with GitHub Actions on every push to `main`.
 
-1. Push the repository to GitHub.
-2. In the repository settings, open Pages and set the source to GitHub Actions.
-3. The workflow in `.github/workflows/pages.yml` builds `dist/` and deploys it on every push to `main`.
+Pages has to use Actions as the source, or that workflow has nowhere to publish:
 
-To deploy by hand:
+1. Open the repository on GitHub.
+2. Go to **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+
+Then run **Actions → Deploy to GitHub Pages** if it has not already started. The live URL is `https://srilovesflutter.github.io/India-fair-share/`.
+
+To build the same files locally:
 
 ```bash
 npm run build
 ```
 
-Upload the contents of `dist/` to any static host. No server, database, or API key is required.
+The `dist/` folder expects to be served from `/India-fair-share/`. No server, database, or API key is required.
 
 ## Data
 
